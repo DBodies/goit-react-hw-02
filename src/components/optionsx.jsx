@@ -1,13 +1,13 @@
 
 
-export default function Options({ leaveFeedback, reset }) {
+export default function Options({ leaveFeedback, reset,hasReviews }) {
 
     return (
         <>
         <button onClick={() => leaveFeedback("good")}>Good</button>
-        <button onClick={() => leaveFeedback("normal")}>Normal</button>
+        <button onClick={() => leaveFeedback("neutral")}>Neutral</button>
             <button onClick={() => leaveFeedback("bad")}>Bad</button>
-            <button onClick={(reset)}>Reset</button>
+            {hasReviews && <button onClick={reset}>Reset</button>}
         </>
     )
 }

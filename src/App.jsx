@@ -12,7 +12,7 @@ export default function App() {
     }
     return {
     good: 0,
-    normal: 0,
+    neutral: 0,
       bad: 0
     }
   })
@@ -29,19 +29,28 @@ export default function App() {
   }))
 }
 
+// const total = good + neutral + bad
+
   const reset = () => {
-    setFeedback({good:0, normal:0, bad:0})
+    setFeedback({good:0, neutral:0, bad:0})
   }
   
-  const total = feedBack.good + feedBack.normal + feedBack.bad
-  
+  const total = feedBack.good + feedBack.neutral + feedBack.bad
+
+  const totalPositivePerc = total
+    ? Math.round((feedBack.good / total) * 100)
+    : 0;
+
   return (
     <>
-      <h1>Sip Happens Café</h1>
       <Description />
-      <Options leaveFeedback={handleFeedback} reset={reset} />
+      <Options leaveFeedback={handleFeedback} reset={reset} hasReviews={total > 0} />
       {total > 0 ? (
-        <Feedback good={feedBack.good} normal={feedBack.normal} bad={feedBack.bad} />
+        <Feedback good={feedBack.good}
+          neutral={feedBack.neutral}
+          bad={feedBack.bad}
+          total={total}
+          positivePerc={totalPositivePerc} />
       ) : (
         <Notification message="No feedback yet" />
       )}
