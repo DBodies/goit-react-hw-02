@@ -5,7 +5,7 @@ export default function Feedback({good, neutral, bad,positivePerc,total}) {
             <li>Neutral: {neutral}</li>
             <li>Bad:  {bad}</li>
             <li>Total: {total}</li>
-            <li>Positive:: {positivePerc}</li>
+            <li>Positive: {positivePerc}%</li>
         </ul>
     )
 }
